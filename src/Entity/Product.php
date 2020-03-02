@@ -32,11 +32,6 @@ class Product
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $amount;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Currency")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -76,21 +71,9 @@ class Product
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(int $priceInCents): self
     {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getAmount(): ?int
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(int $amount): self
-    {
-        $this->amount = $amount;
+        $this->price = $priceInCents;
 
         return $this;
     }
