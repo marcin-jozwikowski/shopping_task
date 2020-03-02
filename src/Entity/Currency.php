@@ -54,4 +54,9 @@ class Currency
 
         return $this;
     }
+
+    public function getFullName(): string
+    {
+        return sprintf("%s (%s)", $this->getName(), $this->getSymbol());
+    }
 }

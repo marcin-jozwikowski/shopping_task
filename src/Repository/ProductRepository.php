@@ -8,6 +8,8 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\Expr\OrderBy;
 use Doctrine\ORM\QueryBuilder;
 
@@ -52,5 +54,16 @@ class ProductRepository extends ServiceEntityRepository
             ->setFirstResult(($page - 1) * $perPage)
             ->getQuery()
             ->getResult(AbstractQuery::HYDRATE_ARRAY);
+    }
+
+    /**
+     * @param Product $product
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(Product $product): void
+    {
+        $this->getEntityManager()->persist($product);
+        $this->getEntityManager()->flush();
     }
 }
