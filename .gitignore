@@ -10,3 +10,4 @@
 ###< symfony/framework-bundle ###
 
 docker-compose.yml
+.idea/
