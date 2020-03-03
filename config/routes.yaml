@@ -1,6 +1,7 @@
 index:
     path: /
     controller: App\Controller\ProductsController::index
+    methods: GET
 
 products:
     path: /products/{page}/{per_page}
@@ -13,6 +14,18 @@ products:
         per_page: 10
     options:
         expose: true
+    methods: GET
 add:
     path: /add
     controller: App\Controller\ProductsController::add
+    methods: [GET, POST]
+
+login:
+    path: /login
+    controller: \App\Controller\AuthController::login
+    methods: [GET, POST]
+
+logout:
+    path: /logout
+    controller: \App\Controller\AuthController::logout
+    methods: GET
