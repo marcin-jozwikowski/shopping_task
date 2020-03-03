@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\DataProvider\ProductDataProvider;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Message\ProductAddedMessage;
 use App\Repository\ProductRepository;
 use App\Response\CouldNotSaveResponse;
 use App\Response\DatabaseErrorResponse;
@@ -47,6 +48,7 @@ class ProductsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $productRepository->save($product);
+                $this->dispatchMessage(new ProductAddedMessage($this->getUser(), $product));
             } catch (OptimisticLockException $e) {
                 return new CouldNotSaveResponse();
             } catch (ORMException $e) {
