@@ -4,7 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-
+    product_notifications.email.sender: '%env(string:NOTIFICATION_EMAIL_SENDER)%'
+    product_notifications.email.recipient: '%env(string:NOTIFICATION_EMAIL_RECIPIENT)%'
 services:
     # default configuration for services in *this* file
     _defaults:
