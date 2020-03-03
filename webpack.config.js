@@ -24,6 +24,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('add', './assets/css/add.scss')
+    .addEntry('show', ['./assets/js/product_list.js', './assets/css/product_list.scss'])
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -69,6 +70,7 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
+    .enableVueLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();

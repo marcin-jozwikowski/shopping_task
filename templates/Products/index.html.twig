@@ -1,1 +1,15 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div id="application"></div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('show') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('show') }}
+{% endblock %}
