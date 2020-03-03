@@ -6,6 +6,7 @@ use App\Entity\Currency;
 use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -47,6 +48,16 @@ class ProductType extends AbstractType
                 'choice_label' => 'fullName'
             ])
             ->add('add', SubmitType::class);
+
+        $builder->get('price')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($priceInCents) {
+                    return $priceInCents / 100;
+                },
+                function ($priceFull) {
+                    return $priceFull * 100;
+                }
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

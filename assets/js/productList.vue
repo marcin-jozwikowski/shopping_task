@@ -10,7 +10,7 @@
             <div class="row" v-for="product in products">
                 <div class="col-3"><p v-text="product.name"></p></div>
                 <div class="col-6" v-html="product.description"></div>
-                <div class="col-3"><p><span v-text="product.price"></span> <span v-text="product.currency"></span></p>
+                <div class="col-3"><p><span v-text="product.price / 100"></span> <span v-text="product.symbol"></span></p>
                 </div>
             </div>
         </div>
