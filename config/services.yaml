@@ -6,6 +6,7 @@
 parameters:
     product_notifications.email.sender: '%env(string:NOTIFICATION_EMAIL_SENDER)%'
     product_notifications.email.recipient: '%env(string:NOTIFICATION_EMAIL_RECIPIENT)%'
+    product_notifications.hangouts.webhook: '%env(string:NOTIFICATION_HANGOUTS_WEBHOOK)%'
 services:
     # default configuration for services in *this* file
     _defaults:
