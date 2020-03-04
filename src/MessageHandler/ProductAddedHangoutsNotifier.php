@@ -24,15 +24,17 @@ class ProductAddedHangoutsNotifier implements MessageHandlerInterface
 
     public function __invoke(ProductAddedMessage $productAddedMessage)
     {
-        $message = sprintf(
-            "User '%s' added product: '%s'",
-            $productAddedMessage->getUser()->getUsername(),
-            $productAddedMessage->getProduct()->getName()
-        );
+        if (!empty($this->webhook)) {
+            $message = sprintf(
+                "User '%s' added product: '%s'",
+                $productAddedMessage->getUser()->getUsername(),
+                $productAddedMessage->getProduct()->getName()
+            );
 
-        $this->client->post($this->webhook, [
-            'headers' => ['Content-Type' => 'application/json; charset=UTF-8'],
-            'body'    => json_encode(['text'=>$message])
-        ]);
+            $this->client->post($this->webhook, [
+                'headers' => ['Content-Type' => 'application/json; charset=UTF-8'],
+                'body'    => json_encode(['text'=>$message])
+            ]);
+        }
     }
 }

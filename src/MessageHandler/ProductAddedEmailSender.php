@@ -27,18 +27,20 @@ class ProductAddedEmailSender implements MessageHandlerInterface
 
     public function __invoke(ProductAddedMessage $productAddedMessage)
     {
-        $email = (new \Swift_Message('Product Added'))
-            ->setTo($this->recipient)
-            ->setFrom($this->sender)
-            ->addPart(
-                sprintf(
-                    "Product '%s' added by '%s'",
-                    $productAddedMessage->getProduct()->getName(),
-                    $productAddedMessage->getUser()->getUsername()
-                ),
-                'text/plain'
-            );
+        if (!empty($this->sender) && !empty($this->recipient)) {
+            $email = (new \Swift_Message('Product Added'))
+                ->setTo($this->recipient)
+                ->setFrom($this->sender)
+                ->addPart(
+                    sprintf(
+                        "Product '%s' added by '%s'",
+                        $productAddedMessage->getProduct()->getName(),
+                        $productAddedMessage->getUser()->getUsername()
+                    ),
+                    'text/plain'
+                );
 
-        $this->mailer->send($email);
+            $this->mailer->send($email);
+        }
     }
 }
