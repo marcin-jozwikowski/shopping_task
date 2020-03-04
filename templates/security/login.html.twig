@@ -3,31 +3,40 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
-        </div>
-    {% else %}
-        <form method="post">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+    <div class="container">
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
+            </div>
+        {% else %}
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <label for="inputUsername">Username</label>
-            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control"
-                   required
-                   autofocus>
-            <label for="inputPassword">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" required>
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <div class="form-group">
 
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <label for="inputUsername">Username</label>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
+                           class="form-control"
+                           required
+                           autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+                </div>
 
-            <button class="btn btn-lg btn-primary" type="submit">
-                Sign in
-            </button>
-        </form>
-    {% endif %}
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Sign in
+                </button>
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
