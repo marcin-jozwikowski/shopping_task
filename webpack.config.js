@@ -23,7 +23,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('add', './assets/css/add.scss')
+    .addEntry('add', ['./assets/css/add.scss', './assets/js/add.js'])
     .addEntry('show', ['./assets/js/product_list.js', './assets/css/product_list.scss'])
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')

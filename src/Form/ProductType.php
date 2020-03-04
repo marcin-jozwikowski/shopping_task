@@ -19,6 +19,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProductType extends AbstractType
 {
+    const DESCRIPTION_MINIMUM = 100;
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -31,8 +33,12 @@ class ProductType extends AbstractType
             ->add('description', TextareaType::class, [
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['min' => 100, 'max' => 255])
-                ]
+                    new Length(['min' => static::DESCRIPTION_MINIMUM])
+                ],
+                'attr'        => [
+                    'data-min-length' => static::DESCRIPTION_MINIMUM,
+                    'class'           => 'lengthCounter'
+                ],
             ])
             ->add('price', NumberType::class, [
                 'constraints' => [
