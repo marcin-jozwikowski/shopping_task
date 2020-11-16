@@ -26,6 +26,6 @@
         "@babel/plugin-transform-runtime": "^7.6.2",
         "bootstrap": "4.0.0",
         "bootstrap-select": "^1.13.12",
-        "jquery": "^3.4.1"
+        "jquery": "^3.5.0"
     }
 }
