@@ -22,7 +22,7 @@ class Product
     private $name;
 
     /**
-     * @ORM\Column(type="blob")
+     * @ORM\Column(type="text")
      */
     private $description;
 

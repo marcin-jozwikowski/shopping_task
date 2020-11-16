@@ -53,7 +53,7 @@ class ProductRepository extends ServiceEntityRepository
             ->setMaxResults($perPage)
             ->setFirstResult(($page - 1) * $perPage)
             ->getQuery()
-            ->getResult(AbstractQuery::HYDRATE_ARRAY);
+            ->getResult();
     }
 
     /**
